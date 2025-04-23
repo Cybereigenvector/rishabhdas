@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talks - Dr. Rishabh Das</title>
+    <style>
+        :root {
+            --primary: #0b3d91;
+            --secondary: #ff5722;
+            --tertiary: #e0e0e0;
+            --light: #f8f9fa;
+            --dark: #1a1a1a;
+            --text: #333333;
+            --text-light: #666666;
+            --border: #dee2e6;
+            --shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--light);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px; /* Increased padding for more spacing from edges */
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 50px 0; /* Increased padding */
+            position: relative;
+        }
+        
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 60px; /* Increased gap */
+        }
+        
+        .profile-info {
+            flex: 3;
+        }
+        
+        .profile-image {
+            flex: 1;
+            max-width: 240px;
+        }
+        
+        .profile-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: var(--shadow);
+        }
+        
+        .name {
+            font-size: 2.8rem; /* Increased font size */
+            margin-bottom: 15px; /* Increased margin */
+            font-weight: 600;
+        }
+        
+        .title {
+            font-size: 1.2rem; /* Increased font size */
+            margin-bottom: 25px; /* Increased margin */
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        .quote {
+            font-style: italic;
+            margin-bottom: 25px; /* Increased margin */
+            border-left: 3px solid var(--secondary);
+            padding-left: 15px; /* Increased padding */
+            font-size: 1.1rem; /* Increased font size */
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px; /* Increased gap */
+            margin-top: 25px; /* Increased margin */
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Increased gap */
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 20px; /* Increased gap */
+            margin-top: 25px; /* Increased margin */
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px; /* Increased size */
+            height: 45px; /* Increased size */
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        /* Navigation Styles */
+        .nav-container {
+            background-color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+        }
+        
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            padding: 20px 25px;
+            display: block;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 1.05rem; /* Increased font size */
+        }
+        
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        nav a:hover:after,
+        nav a.active:after {
+            width: 100%;
+        }
+        
+        nav a.active {
+            color: var(--primary);
+        }
+        
+        /* Main Content Styles */
+        main {
+            padding: 60px 0; /* Increased padding */
+        }
+        
+        section {
+            padding-top: 30px; /* Increased padding */
+            margin-bottom: 80px; /* Increased margin */
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 40px; /* Increased margin */
+            padding-bottom: 15px; /* Increased padding */
+            border-bottom: 2px solid var(--secondary);
+            font-size: 2rem; /* Increased font size */
+            position: relative;
+            display: inline-block;
+        }
+        
+        h3 {
+            color: var(--primary);
+            margin: 40px 0 20px; /* Increased margins */
+            font-size: 1.5rem; /* Increased font size */
+        }
+        
+        p {
+            margin-bottom: 20px; /* Increased margin */
+            line-height: 1.8; /* Increased line height */
+            font-size: 1.05rem; /* Increased font size */
+        }
+        
+        /* Button & Link Styles */
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 24px; /* Increased padding */
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            margin-right: 15px; /* Increased margin */
+            margin-bottom: 15px; /* Increased margin */
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 1.05rem; /* Increased font size */
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 50px 0; /* Increased padding */
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 25px; /* Increased gap */
+            align-items: center;
+        }
+        
+        .footer-nav {
+            display: flex;
+            gap: 25px; /* Increased gap */
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 25px 0; /* Increased margin */
+        }
+        
+        .footer-nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 1.05rem; /* Increased font size */
+        }
+        
+        .footer-nav a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 20px; /* Increased gap */
+        }
+        
+        .copyright {
+            margin-top: 25px; /* Increased margin */
+            font-size: 0.95rem; /* Increased font size */
+            opacity: 0.8;
+        }
+
+        /* Talks page specific styles */
+        .talks-intro {
+            background-color: white;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .talks-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+            gap: 15px;
+        }
+        
+        .talk-tab {
+            padding: 12px 24px;
+            background-color: var(--tertiary);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 1.05rem;
+        }
+        
+        .talk-tab:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .talk-tab.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .talks-content {
+            display: none;
+        }
+        
+        .talks-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .talk-item {
+            background-color: white;
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            position: relative;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .talk-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+        
+        .talk-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .talk-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .talk-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        
+        .talk-abstract {
+            margin-bottom: 20px;
+            font-style: italic;
+            font-size: 1rem;
+            color: var(--text-light);
+            padding-left: 15px;
+            border-left: 2px solid var(--tertiary);
+        }
+        
+        .talk-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .talk-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background-color: var(--light);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .talk-link:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .talk-tag {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: var(--tertiary);
+            color: var(--text);
+            border-radius: 15px;
+            font-size: 0.85rem;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .upcoming-talk {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 10px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px; /* Adjusted padding for mobile */
+            }
+            
+            .profile-header {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 30px; /* Adjusted gap for mobile */
+            }
+            
+            .profile-image {
+                margin: 0 auto;
+            }
+            
+            .contact-info, .social-icons {
+                justify-content: center;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+            }
+            
+            nav a {
+                padding: 15px;
+                font-size: 0.95rem; /* Adjusted font size for mobile */
+            }
+            
+            .talk-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        
+        /* Icons */
+        .icon {
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .icon svg {
+            width: 100%;
+            height: 100%;
+            fill: currentColor;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="profile-header">
+                <div class="profile-info">
+                    <h1 class="name">Dr. Rishabh Das</h1>
+                    <p class="title">CRITICAL INFRASTRUCTURE SECURITY RESEARCHER · SECURITY ARCHITECT · SECURITY PRODUCT DEVELOPER</p>
+                    <p class="quote">"I protect critical infrastructure from cyber-attacks"</p>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 11.5A2.5 2.5 0 0 1 9.5 9 2.5 2.5 0 0 1 12 6.5 2.5 2.5 0 0 1 14.5 9 2.5 2.5 0 0 1 12 11.5M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7z"></path>
+                                </svg>
+                            </span>
+                            Athens, OH, USA
+                        </div>
+                        <div class="contact-item">
+                            <span class="icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path>
+                                </svg>
+                            </span>
+                            (+1) 256-658-0887
+                        </div>
+                        <div class="contact-item">
+                            <span class="icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path>
+                                </svg>
+                            </span>
+                            das.rishabh92@gmail.com
+                        </div>
+                    </div>
+                    
+                    <div class="social-icons">
+                        <a href="https://www.linkedin.com/in/rishabhdascyber" target="_blank" title="LinkedIn">
+                            <span class="icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path>
+                                </svg>
+                            </span>
+                        </a>
+                        <a href="https://github.com/RishabhDas" target="_blank" title="GitHub">
+                            <span class="icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"></path>
+                                </svg>
+                            </span>
+                        </a>
+                        <a href="https://scholar.google.com/citations?user=YOURID" target="_blank" title="Google Scholar">
+                            <span class="icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"></path>
+                                </svg>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="profile-image">
+                    <img src="/api/placeholder/400/400" alt="Dr. Rishabh Das">
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="nav-container">
+        <div class="container">
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="experience.html">Experience</a>
+                <a href="education.html">Education</a>
+                <a href="publications.html">Publications</a>
+                <a href="talks.html" class="active">Talks</a>
+                <a href="awards.html">Awards</a>
+                <a href="service.html">Service</a>
+                <a href="media.html">Media</a>
+            </nav>
+        </div>
+    </div>
+    
+    <main class="container">
+        <section>
+            <h2>Talks & Presentations</h2>
+            
+            <div class="talks-intro">
+                <p>I regularly share my research and expertise at prestigious conferences, workshops, and industry events worldwide. My presentations focus on advancing the understanding of critical infrastructure cybersecurity, industrial control systems protection, and emerging threats in operational technology environments. Through these talks, I aim to foster collaboration between academia and industry to develop robust security solutions for our essential systems.</p>
+            </div>
+            
+            <div class="talks-tabs">
+                <div class="talk-tab active" data-tab="all">All Talks</div>
+                <div class="talk-tab" data-tab="conference">Conference Presentations</div>
+                <div class="talk-tab" data-tab="workshop">Workshop Presentations</div>
+                <div class="talk-tab" data-tab="panel">Panel Discussions</div>
+            </div>
+            
+            <div class="talks-content active" id="content-all">
+                <div class="talk-item">
+                    <h3>WORKSHOP PRESENTATIONS</h3>
+                <ul class="pub-list">
+                    <li class="pub-item">
+                        <div class="pub-title">"5G Security 101: From Radio to Cloud"</div>
+                        <div class="pub-details">GridSecCon 2021, Washington, DC, USA, October 2021</div>
+                    </li>
+                    
+                    <li class="pub-item">
+                        <div class="pub-title">"Intrusion Detection/Prevention Systems for Industrial Controllers"</div>
+                        <div class="pub-details">Scholar's Studio, Louis Salmon Library, Huntsville, AL, USA, October 2019</div>
+                    </li>
+                    
+                    <li class="pub-item">
+                        <div class="pub-title">"SCADA Hands-On Workshop"</div>
+                        <div class="pub-details">Southeastcon 2019, Huntsville, AL, USA, April 2019</div>
+                    </li>
+                    
+                    <li class="pub-item">
+                        <div class="pub-title">"Modelling a Midstream Oil Terminal for Cybersecurity Research"</div>
+                        <div class="pub-details">Southeast Symposium on Contemporary Engineering Topics (SSCET) 2017, New Orleans, LA, USA, September 2017</div>
+                    </li>
+                    
+                    <li class="pub-item">
+                        <div class="pub-title">"Lectures and Lab Exercises to Teach SCADA Cybersecurity"</div>
+                        <div class="pub-details">Critical Infrastructure and Industrial Control Systems Security Workshop, Huntsville, AL, USA, June 2017</div>
+                    </li>
+                    
+                    <li class="pub-item">
+                        <div class="pub-title">"Virtualizing Industrial Control System for Cybersecurity Research"</div>
+                        <div class="pub-details">OPAL-RT Regional Seminar, Atlanta, GA, USA, February 2017</div>
+                    </li>
+                    
+                    <li class="pub-item">
+                        <div class="pub-title">"Modeling Industrial Control Systems for Cybersecurity Research"</div>
+                        <div class="pub-details">Southeast Symposium on Contemporary Engineering Topics (SSCET) 2016, Jackson, MS, USA, August 2016</div>
+                    </li>
+                </ul>
+                
+                <h3>CONFERENCE PRESENTATIONS</h3>
+                <ul class="pub-list">
+                    <li class="pub-item">
+                        <div class="pub-title">"Navigating the Threat Horizon: Enhancing Oil and Gas Cybersecurity Through Digital Twin"</div>
+                        <div class="pub-details">18th API Cybersecurity Conference for the Oil and Natural Gas Industry, Houston, TX, USA, November 2023</div>
+                    </li>
+                    
+                    <li class="pub-item">
+                        <div class="pub-title">"From Risk to Resilience: Secure Software Bill of Material (SBOM) management for Operational Technology (OT) systems"</div>
+                        <div class="pub-details">18th API Cybersecurity Conference for the Oil and Natural Gas Industry, Houston, TX, USA, November 2023</div>
+                    </li>
+                    
+                    <li class="pub-item">
+                        <div class="pub-title">"Cybersecurity and Future of EV Charging"</div>
+                        <div class="pub-details">Ford: Cybersecurity Awareness and Educational Services, Dearborn, MI, USA, October 2023</div>
+                    </li>
+                    
+                    <li class="pub-item">
+                        <div class="pub-title">"The intersection of Industrial Control System and Metaverse"</div>
+                        <div class="pub-details">CyberSaint STRONGER 2.0, Boston, MA, USA, September 2023</div>
+                    </li>
+                    
+                    <li class="pub-item">
+                        <div class="pub-title">"Anchored in Safety: Cybersecurity Measures for Modern Ports"</div>
+                        <div class="pub-details">Port of the Future, Houston, TX, USA, April 2023</div>
+                    </li>
+                    
+                    <li class="pub-item">
+                        <div class="pub-title">"Creating A Sustainable Digital Future"</div>
+                        <div class="pub-details">BizTech Jamaica, November 2022</div>
+                    </li>
+                    
+                    <li class="pub-item">
+                        <div class="pub-title">"Cyber Security Challenges in Industry 4.0 transformation"</div>
+                        <div class="pub-details">CyberSaint STRONGER, Boston, MA, USA, September 2022</div>
+                    </li>
+                    
+                    <li class="pub-item">
+                        <div class="pub-title">"On-the-Edge Realtime Intrusion Prevention System for DoS Attack"</div>
+                        <div class="pub-details">5th International Symposium for ICS & SCADA Cyber Security Research (ICS-CSR), Hamburg, Germany, August 2018</div>
+                    </li>
+                    
+                    <li class="pub-item">
+                        <div class="pub-title">"Modeling a Midstream Oil Terminal for Cybersecurity Risk Evaluation"</div>
+                        <div class="pub-details">Twelfth IFIP WG 11.10 International Conference on Critical Infrastructure Protection, Arlington, VA, USA, March 2018</div>
+                    </li>
+                    
+                    <li class="pub-item">
+                        <div class="pub-title">"Machine Learning and Cyber Security"</div>
+                        <div class="pub-details">International Conference on Computer, Electrical & Communication Engineering, Kolkata, WB, India, December 2017</div>
+                        <div class="pub-details"><strong>Best Presenter Award</strong></div>
+                    </li>
+                    
+                    <li class="pub-item">
+                        <div class="pub-title">"Virtualization of Industrial Control System Testbeds for Cybersecurity"</div>
+                        <div class="pub-details">Second Annual Industrial Control System Security (ICSS), Los Angeles, CA, USA, December 2016</div>
+                    </li>
+                    
+                    <li class="pub-item">
+                        <div class="pub-title">"Supervision of control valve characteristics using PLC and creation of HMI by SCADA"</div>
+                        <div class="pub-details">First International Conference on Automation, Control, Energy and Systems, Hooghly, WB, India, February 2014</div>
+                    </li>
+                    
+                    <li class="pub-item">
+                        <div class="pub-title">"Embedded system for home automation using SMS"</div>
+                        <div class="pub-details">First International Conference on Automation, Control, Energy and Systems, Hooghly, WB, India, February 2014</div>
+                    </li>
+                    
+                    <li class="pub-item">
+                        <div class="pub-title">"Security Based Domotics"</div>
+                        <div class="pub-details">1st International Conference on Computational Intelligence: Modeling, Techniques and Applications, Kalyani, WB, India, September 2013</div>
+                    </li>
+                </ul>
+                
+                <h3>PANEL DISCUSSIONS</h3>
+                <ul class="pub-list">
+                    <li class="pub-item">
+                        <div class="pub-title">"Why Critical infrastructures are vulnerable?"</div>
+                        <div class="pub-details">SPARK, Washington, DC, September 2022</div>
+                    </li>
+                    
+                    <li class="pub-item">
+                        <div class="pub-title">"Exploration of Cybersecurity Career"</div>
+                        <div class="pub-details">Ford, Dearborn, MI, October 2022</div>
+                    </li>
+                    
+                    <li class="pub-item">
+                        <div class="pub-title">"Discussion on Cyber Impact of Modernization on Legacy Infrastructure"</div>
+                        <div class="pub-details">United States Agency for International Development (USAID) Cybersecurity Forum, Richmond, VA, May 2022</div>
+                    </li>
+                    
+                    <li class="pub-item">
+                        <div class="pub-title">"Future-proofing Your Organization through Cybersecurity"</div>
+                        <div class="pub-details">BizTech 2023, Jamaica, November 2022</div>
+                    </li>
+                </ul> 

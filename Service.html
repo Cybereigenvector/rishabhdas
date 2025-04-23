@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service - Dr. Rishabh Das</title>
+    <style>
+        :root {
+            --primary: #0b3d91;
+            --secondary: #ff5722;
+            --tertiary: #e0e0e0;
+            --light: #f8f9fa;
+            --dark: #1a1a1a;
+            --text: #333333;
+            --text-light: #666666;
+            --border: #dee2e6;
+            --shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--light);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px; /* Increased padding for more spacing from edges */
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 50px 0; /* Increased padding */
+            position: relative;
+        }
+        
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 60px; /* Increased gap */
+        }
+        
+        .profile-info {
+            flex: 3;
+        }
+        
+        .profile-image {
+            flex: 1;
+            max-width: 240px;
+        }
+        
+        .profile-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: var(--shadow);
+        }
+        
+        .name {
+            font-size: 2.8rem; /* Increased font size */
+            margin-bottom: 15px; /* Increased margin */
+            font-weight: 600;
+        }
+        
+        .title {
+            font-size: 1.2rem; /* Increased font size */
+            margin-bottom: 25px; /* Increased margin */
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        .quote {
+            font-style: italic;
+            margin-bottom: 25px; /* Increased margin */
+            border-left: 3px solid var(--secondary);
+            padding-left: 15px; /* Increased padding */
+            font-size: 1.1rem; /* Increased font size */
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px; /* Increased gap */
+            margin-top: 25px; /* Increased margin */
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Increased gap */
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 20px; /* Increased gap */
+            margin-top: 25px; /* Increased margin */
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px; /* Increased size */
+            height: 45px; /* Increased size */
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        /* Navigation Styles */
+        .nav-container {
+            background-color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+        }
+        
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            padding: 20px 25px;
+            display: block;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 1.05rem; /* Increased font size */
+        }
+        
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        nav a:hover:after,
+        nav a.active:after {
+            width: 100%;
+        }
+        
+        nav a.active {
+            color: var(--primary);
+        }
+        
+        /* Main Content Styles */
+        main {
+            padding: 60px 0; /* Increased padding */
+        }
+        
+        section {
+            padding-top: 30px; /* Increased padding */
+            margin-bottom: 80px; /* Increased margin */
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 40px; /* Increased margin */
+            padding-bottom: 15px; /* Increased padding */
+            border-bottom: 2px solid var(--secondary);
+            font-size: 2rem; /* Increased font size */
+            position: relative;
+            display: inline-block;
+        }
+        
+        h3 {
+            color: var(--primary);
+            margin: 40px 0 20px; /* Increased margins */
+            font-size: 1.5rem; /* Increased font size */
+        }
+        
+        p {
+            margin-bottom: 20px; /* Increased margin */
+            line-height: 1.8; /* Increased line height */
+            font-size: 1.05rem; /* Increased font size */
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 50px 0; /* Increased padding */
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 25px; /* Increased gap */
+            align-items: center;
+        }
+        
+        .footer-nav {
+            display: flex;
+            gap: 25px; /* Increased gap */
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 25px 0; /* Increased margin */
+        }
+        
+        .footer-nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 1.05rem; /* Increased font size */
+        }
+        
+        .footer-nav a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 20px; /* Increased gap */
+        }
+        
+        .copyright {
+            margin-top: 25px; /* Increased margin */
+            font-size: 0.95rem; /* Increased font size */
+            opacity: 0.8;
+        }
+
+        /* Service page specific styles */
+        .service-intro {
+            background-color: white;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .pub-list {
+            list-style-type: none;
+        }
+        
+        .pub-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--tertiary);
+        }
+        
+        .pub-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .pub-details {
+            font-style: italic;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+        
+        .service-category {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 40px;
+        }
+        
+        .service-category h3 {
+            margin-top: 0;
+        }
+        
+        .service-item {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--tertiary);
+        }
+        
+        .service-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .service-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .service-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .service-detail {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: var(--tertiary);
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .service-description {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px; /* Adjusted padding for mobile */
+            }
+            
+            .profile-header {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 30px; /* Adjusted gap for mobile */
+            }
+            
+            .profile-image {
+                margin: 0 auto;
+            }
+            
+            .contact-info, .social-icons {
+                justify-content: center;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+            }
+            
+            nav a {
+                padding: 15px;
+                font-size: 0.95rem; /* Adjusted font size for mobile */
+            }
+            
+            .service-details {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        
+        /* Icons */
+        .icon {
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .icon svg {
+            width: 100%;
+            height: 100%;
+            fill: currentColor;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="profile-header">
+                <div class="profile-info">
+                    <h1 class="name">Dr. Rishabh Das</h1>
+                    <p class="title">CRITICAL INFRASTRUCTURE SECURITY RESEARCHER · SECURITY ARCHITECT · SECURITY PRODUCT DEVELOPER</p>
+                    <p class="quote">"I protect critical infrastructure from cyber-attacks"</p>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 11.5A2.5 2.5 0 0 1 9.5 9 2.5 2.5 0 0 1 12 6.5 2.5 2.5 0 0 1 14.5 9 2.5 2.5 0 0 1 12 11.5M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7z"></path>
+                                </svg>
+                            </span>
+                            Athens, OH, USA
+                        </div>
+                        <div class="contact-item">
+                            <span class="icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path>
+                                </svg>
+                            </span>
+                            (+1) 256-658-0887
+                        </div>
+                        <div class="contact-item">
+                            <span class="icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path>
+                                </svg>
+                            </span>
+                            das.rishabh92@gmail.com
+                        </div>
+                    </div>
+                    
+                    <div class="social-icons">
+                        <a href="https://www.linkedin.com/in/rishabhdascyber" target="_blank" title="LinkedIn">
+                            <span class="icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path>
+                                </svg>
+                            </span>
+                        </a>
+                        <a href="https://github.com/RishabhDas" target="_blank" title="GitHub">
+                            <span class="icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"></path>
+                                </svg>
+                            </span>
+                        </a>
+                        <a href="https://scholar.google.com/citations?user=YOURID" target="_blank" title="Google Scholar">
+                            <span class="icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"></path>
+                                </svg>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="profile-image">
+                    <img src="/api/placeholder/400/400" alt="Dr. Rishabh Das">
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="nav-container">
+        <div class="container">
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="experience.html">Experience</a>
+                <a href="education.html">Education</a>
+                <a href="publications.html">Publications</a>
+                <a href="talks.html">Talks</a>
+                <a href="awards.html">Awards</a>
+                <a href="service.html" class="active">Service</a>
+                <a href="media.html">Media</a>
+            </nav>
+        </div>
+    </div>
+    
+    <main class="container">
+        <section>
+            <h2>Academic & Professional Service</h2>
+            
+            <div class="service-intro">
+                <p>I am committed to contributing to the advancement of the cybersecurity field through service to the academic and professional communities. My service activities include peer review for academic journals and conferences, participation in technical committees, and leadership roles in professional organizations focused on critical infrastructure protection.</p>
+            </div>
+            
+            <h3>TECHNICAL REVIEWER</h3>
+            <ul class="pub-list">
+                <li class="pub-item">
+                    <div class="pub-title">Future Internet (ISSN: 1999-5903)</div>
+                    <div class="pub-details">2025 (1 review)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">Algorithms (ISSN: 1999-4893)</div>
+                    <div class="pub-details">2025 (2 reviews)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">Automation (ISSN 2673-4052)</div>
+                    <div class="pub-details">2024 (1 review)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">Entropy (ISSN 1099-4300)</div>
+                    <div class="pub-details">2022, 2024 (2 reviews)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">Electronics (ISSN 2079-9292)</div>
+                    <div class="pub-details">2022 (1 review)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">Sensors (ISSN 1424-8220)</div>
+                    <div class="pub-details">2022 (2 reviews)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">Sustainability (ISSN 2071-1050)</div>
+                    <div class="pub-details">2022, 2024 (2 reviews)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">Remote Sensing (ISSN 2072-4292)</div>
+                    <div class="pub-details">2022 (3 reviews)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">Cells (ISSN: 2073-4409)</div>
+                    <div class="pub-details">2022 (1 review)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">Applied Sciences (ISSN 2076-3417)</div>
+                    <div class="pub-details">4 reviews</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">Internet of Things and Cyber-Physical Systems (ISSN 2667-3452)</div>
+                    <div class="pub-details">2022 (1 review)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">International Workshop on Big Data and Computing (WBDC 2022)</div>
+                    <div class="pub-details">1 review</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">International Journal of Advanced Computer Science and Applications (ISSN 2156-5570)</div>
+                    <div class="pub-details">2022-25 (13 reviews)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">3rd International Conference on Software Engineering, Security and Blockchain (SESBC 2022)</div>
+                    <div class="pub-details">3 reviews</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">Practical Applications of Explainable Artificial Intelligence Methods (PRAXAI @ IEEE-DSAA 2022)</div>
+                    <div class="pub-details">3 reviews</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">IEEE Transactions on Circuits and Systems for Video Technology</div>
+                    <div class="pub-details">2023 (2 reviews)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">Telecom (ISSN 2673-4001)</div>
+                    <div class="pub-details">2023 (1 review)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">Information (ISSN 2078-2489)</div>
+                    <div class="pub-details">2023 (1 review)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">3rd IEEE International Conference on Electrical, Computer and Energy Technologies (ICECET 2023-25)</div>
+                    <div class="pub-details">3 reviews</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">International Workshop on Big Data and Computing (WBDC 2023)</div>
+                    <div class="pub-details">2 reviews</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">Smart Cities (ISSN 2624-6511)</div>
+                    <div class="pub-details">2023 (1 review)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">International Conference on Artificial Intelligence, Computer, Data Sciences and Applications (ACDSA'24)</div>
+                    <div class="pub-details">2024 (1 review)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">International Conference on Electrical and Computer Engineering Researches (ICECER 2024)</div>
+                    <div class="pub-details">2024 (1 review)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">International Conference on Applied Technologies (ICAT 2024)</div>
+                    <div class="pub-details">2024 (2 reviews)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">International Conference on Cyber Welfare and Security (ICCWS 2025)</div>
+                    <div class="pub-details">2 reviews</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">Risk-Based Approach to Secure Cloud Migration (DOI: 10.4018/979-8-3693-7137-4)</div>
+                    <div class="pub-details">1 review</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">2nd International Conference on Machine Learning Algorithms (ICMLA 2025)</div>
+                    <div class="pub-details">2 reviews</div>
+                </li>
+            </ul>
+            
+            <h3>CONFERENCE SESSION CHAIR</h3>
+            <ul class="pub-list">
+                <li class="pub-item">
+                    <div class="pub-title">IEEE Southeastcon 2019</div>
+                    <div class="pub-details">Huntsville, AL, April 2019</div>
+                </li>
+            </ul>
+            
+            <h3>EDITORIAL ROLES</h3>
+            <ul class="pub-list">
+                <li class="pub-item">
+                    <div class="pub-title">Journal Guest Editor</div>
+                    <div class="pub-details">Application of Artificial Intelligence and Machine Learning in Biology (ISSN: 2073-4409)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">Journal Associate Editor</div>
+                    <div class="pub-details">Journal of Advanced Computer Knowledge and Algorithms (ISSN: 3031-8955)</div>
+                </li>
+            </ul>
+            
+            <h3>JUDGE</h3>
+            <ul class="pub-list">
+                <li class="pub-item">
+                    <div class="pub-title">Ohio Academy of Science, Buckeye Science and Engineering Fair 2025 (BSEF)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">Rocket Hacks, University of Toledo, 2025</div>
+                </li>
+            </ul>
+            
+            <h3>ACADEMIC COMMITTEE MEMBER</h3>
+            <ul class="pub-list">
+                <li class="pub-item">
+                    <div class="pub-title">Energy Politics in Eurasia (ENERPO)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">The International Association of Electrical, Electronic and Energy Engineering (IAEEEE)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">International Journal of Engineering Research and Technology (IJERT), (ISSN: 2278-0181)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">International Journal of Advanced Computer Science and Applications (IJACSA)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">International Conference on Big data, IoT, and Cloud Computing (ICBICC 2022)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">International Symposium on Computer Science and Intelligent Control (ISCSIC 2022)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">International Workshop on Big Data and Computing (WBDC 2022)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">Practical Applications of Explainable Artificial Intelligence Methods (PRAXAI @ IEEE-DSAA 2022)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">International Conference on Data, Information and Computing Science (CDICS 2023)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">International Conference on Cyber Welfare and Security (ICCWS 2025)</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">2nd International Conference on Machine Learning Algorithms in Science, Technology, Engineering, Management, Medical Science, Healthcare, and Advances in Machine Learning (ICMLA 2025)</div>
+                </li>
+            </ul>
+            
+            <h3>PROFESSIONAL MEMBERSHIP</h3>
+            <ul class="pub-list">
+                <li class="pub-item">
+                    <div class="pub-title">ISSA Information Systems Security Association</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">ISACA Professional Member</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">GIAC Advisory Board Member</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">IAENG Member</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">IEEE Member</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">(CS)² Member</div>
+                </li>
+                
+                <li class="pub-item">
+                    <div class="pub-title">CSA International Standardization Council</div>
+                </li>
+            </ul>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h3 style="color: white; margin-bottom: 15px;">Dr. Rishabh Das</h3>
+                    <p>Assistant Professor</p>
+                    <p>Scripps College of Communication</p>
+                    <p>Ohio University</p>
+                </div>
+                
+                <div class="footer-nav">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="experience.html">Experience</a>
+                    <a href="education.html">Education</a>
+                    <a href="publications.html">Publications</a>
+                    <a href="talks.html">Talks</a>
+                    <a href="awards.html">Awards</a>
+                    <a href="service.html">Service</a>
+                    <a href="media.html">Media</a>
+                </div>
+                
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/rishabhdascyber" target="_blank" title="LinkedIn">
+                        <span class="icon">
+                            <svg viewBox="0 0 24 24" fill="white">
+                                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path>
+                            </svg>
+                        </span>
+                    </a>
+                    <a href="https://github.com/RishabhDas" target="_blank" title="GitHub">
+                        <span class="icon">
+                            <svg viewBox="0 0 24 24" fill="white">
+                                <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"></path>
+                            </svg>
+                        </span>
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=YOURID" target="_blank" title="Google Scholar">
+                        <span class="icon">
+                            <svg viewBox="0 0 24 24" fill="white">
+                                <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"></path>
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+                
+                <div class="contact-info" style="justify-content: center;">
+                    <div class="contact-item">
+                        <span class="icon">
+                            <svg viewBox="0 0 24 24" fill="white">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path>
+                            </svg>
+                        </span>
+                        das.rishabh92@gmail.com
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon">
+                            <svg viewBox="0 0 24 24" fill="white">
+                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path>
+                            </svg>
+                        </span>
+                        (+1) 256-658-0887
+                    </div>
+                </div>
+                
+                <div class="copyright">
+                    © 2025 Dr. Rishabh Das. All Rights Reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
